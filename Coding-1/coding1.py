@@ -11,6 +11,7 @@ s (string): lowercase string without spaces, numbers, or special characters.
 Returns:
 int: number of vowels in s
 '''
+#This project is complete.
 def vowel_counter(s):
     # WRITE YOUR CODE HERE
 
