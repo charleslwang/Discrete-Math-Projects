@@ -122,8 +122,8 @@ def recursive_fib(n):
     # WRITE YOUR CODE HERE
     if(n <= 1):
         return n
-
-    return recursive_fib(n-1) + recursive_fib(n-2) # int
+    fib_n = recursive_fib(n-1) + recursive_fib(n-2)
+    return fib_n # int
 
 '''
 Returns an integer that is the nth Fibonacci number.
