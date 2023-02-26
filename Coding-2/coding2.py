@@ -7,8 +7,8 @@
 # 3. Make sure there are no indentation errors and that the code compiles on your
 #    end
 #
-# YOUR NAME:
-# YOUR UNI:
+# YOUR NAME: Charles Wang
+# YOUR UNI: clw2198
 
 import itertools
 
@@ -23,29 +23,27 @@ string: 'prop' in string form
 '''
 def format_prop(prop):
     # BASE CASE: #####################################
-    if # fill in here #:
-        return # fill in return value here #
+    if len(prop) == 1:
+        return prop[0]
     ##################################################
 
     # UNARY OPERATOR (not): ##########################
     if 2 == len(prop):
         # the following two variable declarations are missing LHS #
-        = prop[0] # missing LHS
-        = prop[1] # missing LHS
+        op = prop[0]
+        atom = prop[1]
 
         if "not" == op:
-            formatted_prop = # fill in here #
+            formatted_prop = "not " + format_prop(atom)
             return formatted_prop
         else:
             raise ValueError("Unary proposition is not not.")
-    ##################################################
-
     # BINARY OPERATOR (and, or, if, iff, xor): #######
     elif 3 == len(prop):
         # the following three variable declarations are missing LHS #
-        = prop[0] # missing LHS
-        = prop[1] # missing LHS
-        = prop[2] # missing LHS
+        op = prop[0] 
+        first = prop[1] 
+        second = prop[2] 
 
         if op not in ("if", "iff", "or", "and", "xor"):
             raise ValueError("Binary proposition does not have valid connectives.")
@@ -57,10 +55,10 @@ def format_prop(prop):
             op = "<->"
 
         # format left and right sides of a binary operation
-        left_prop = # fill in here #
-        right_prop = # fill in here #
+        left_prop = format_prop(first)
+        right_prop = format_prop(second)
 
-        formatted_prop = # fill in here #
+        formatted_prop = "(" + left_prop + " " + op + " " + right_prop + ")"
         return formatted_prop
     ####################################################
 
@@ -81,22 +79,22 @@ each atomic variable in the proposition.
 Returns:
 int: 0 for False, 1 for True
 '''
+
 def eval_prop(prop, values):
     # BASE CASE: #####################################
-    if # fill in here #:
-        # fill in here # 
-        atomic_prop_id =  # ignore the first character of your proposition variable
-        return # fill in here #
+    if len(prop) == 1:
+        atomic_prop_id = (int)(prop[0][1]) - 1
+        return values[atomic_prop_id]
     ##################################################
 
     # UNARY OPERATOR (not): ##########################
     elif 2 == len(prop):
         # the following two variable declarations are missing LHS #
-        = prop[0] # missing LHS
-        = prop[1] # missing LHS
+        op = prop[0] 
+        atom = prop[1] 
 
         if "not" == op:
-            return # fill in here # 
+            return (int)(not eval_prop(atom, values))
         else:
             raise ValueError("Unary proposition is not not.")
     ##################################################
@@ -104,28 +102,28 @@ def eval_prop(prop, values):
     # BINARY OPERATOR (and, or, if, iff, xor): #######
     elif 3 == len(prop):
         # the following three variable declarations are missing LHS #
-        = prop[0] # missing LHS
-        = prop[1] # missing LHS
-        = prop[2] # missing LHS
+        op = prop[0]
+        first = prop[1] 
+        second = prop[2] 
 
         if op not in ("if", "iff", "or", "and", "xor"):
             raise ValueError("Binary proposition does not have valid connectives.")
 
         # evaluate left and right sides of a binary operation
-        left = # fill in here #
-        right = # fill in here #
+        left = eval_prop(first, values)
+        right = eval_prop(second, values)
 
         # the line here is an example. fill in the rest.
         if "and" == op:
             return int(left and right)
-        elif # fill in :
-            return # fill in here #
-        elif # fill in :
-            return # fill in here #
-        elif # fill in :
-            return # fill in here #
-        else: # fill in :
-            return # fill in here #
+        elif op == "or":
+            return int(left or right)
+        elif op == "xor":
+            return int(left != right)
+        elif op == "if":
+            return int(not right or left)
+        elif op == "iff":
+            return int(left == right)
 
     # INVALID LENGTH ####################################
     else:
