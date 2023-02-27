@@ -34,7 +34,7 @@ def format_prop(prop):
         atom = prop[1]
 
         if "not" == op:
-            formatted_prop = "not " + format_prop(atom)
+            formatted_prop = "(not " + format_prop(atom) + ")"
             return formatted_prop
         else:
             raise ValueError("Unary proposition is not not.")
