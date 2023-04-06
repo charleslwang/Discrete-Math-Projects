@@ -16,8 +16,15 @@ Returns:
 int: GCD of num1 and num2
 '''
 def euclid(num1, num2):
-    # WRITE YOUR CODE HERE
-    return gcd # your GCD
+    a, b = num1, num2
+
+    if b == 0:
+        gcd = a
+        print(f"GCD({a}, {b}) = {gcd}", end="\n")
+        return gcd
+    else:
+        print(f"GCD({a}, {b}) = ", end="")
+        return euclid(b, a % b)
 
 '''
 Returns a list of prime numbers up to (and including) a certain input integer, n.
@@ -29,8 +36,17 @@ Returns:
 list: List of all prime numbers <= n.
 '''
 def prime_gen(n):
-    # WRITE YOUR CODE HERE
-    return primes # your list of prime numbers
+
+    primes = [1 for i in range(n+1)]
+    primes[0] = primes[1] = 0
+
+    for i in range(2, int(n ** 0.5) + 1):
+        if primes[i]:
+            for j in range(i * i, n + 1, i):
+                primes[j] = 0
+
+    # Return a list of all prime numbers up to n
+    return [i for i in range(2, n + 1) if primes[i]]
 
 '''
 Returns a list of two prime integers that sum up to n.
@@ -42,8 +58,20 @@ Returns:
 list: A list of length 2 containing 2 ints that sum up to n.
 '''
 def check_goldbach(n):
-    # WRITE YOUR CODE HERE
-    return primes # two prime numbers that sum up to n
+
+    list = []
+    primes = prime_gen(n);
+
+    for i in range(0, len(primes) - 1):
+        for a in range (i, len(primes) - 1):
+            if primes[i]+primes[a] == n:
+                list.append(primes[i])
+                list.append(primes[a])
+                return list
+            else:
+                continue
+
+    return list
 
 ### DO NOT TURN IN AN ASSIGNMENT WITH ANYTHING BELOW HERE MODIFIED ###
 if __name__ == '__main__':
