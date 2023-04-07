@@ -39,6 +39,7 @@ def prime_gen(n):
 
     primes = [1 for i in range(n+1)]
     primes[0] = primes[1] = 0
+    list = []
 
     for i in range(2, int(n ** 0.5) + 1):
         if primes[i]:
@@ -46,7 +47,11 @@ def prime_gen(n):
                 primes[j] = 0
 
     # Return a list of all prime numbers up to n
-    return [i for i in range(2, n + 1) if primes[i]]
+    for i in range(2, n+1):
+        if primes[i]:
+            list.append(i)
+
+    return list
 
 '''
 Returns a list of two prime integers that sum up to n.
@@ -63,7 +68,7 @@ def check_goldbach(n):
     primes = prime_gen(n);
 
     for i in range(0, len(primes) - 1):
-        for a in range (i, len(primes) - 1):
+        for a in range(i, len(primes) - 1):
             if primes[i]+primes[a] == n:
                 list.append(primes[i])
                 list.append(primes[a])
