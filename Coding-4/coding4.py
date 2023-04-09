@@ -65,10 +65,10 @@ list: A list of length 2 containing 2 ints that sum up to n.
 def check_goldbach(n):
 
     list = []
-    primes = prime_gen(n);
+    primes = prime_gen(n)
 
-    for i in range(0, len(primes) - 1):
-        for a in range(i, len(primes) - 1):
+    for i in range(0, len(primes)):
+        for a in range(i, len(primes)):
             if primes[i]+primes[a] == n:
                 list.append(primes[i])
                 list.append(primes[a])
